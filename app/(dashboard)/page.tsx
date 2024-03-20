@@ -1,9 +1,20 @@
 "use client";
 
 import {EmptyOrg} from "@/app/(dashboard)/_components/empty-org";
+import {BoardList} from "@/app/(dashboard)/_components/board-list";
+
 import {useOrganization} from "@clerk/nextjs";
 
-const DashboardPage = () => {
+interface DashboardPageProps {
+  searchParams: {
+    search?: string;
+    favorites?: string;
+  }
+}
+
+const DashboardPage = ({
+  searchParams
+}: DashboardPageProps) => {
   const { organization } = useOrganization();
 
   return (
@@ -11,7 +22,10 @@ const DashboardPage = () => {
       {!organization ? (
         <EmptyOrg />
       ): (
-        <p>Board List!</p>
+        <BoardList
+          orgId={organization.id}
+          query={searchParams}
+        />
       )}
     </div>
   )
