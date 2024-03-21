@@ -1,5 +1,7 @@
 "use client"
 
+import {EmptySearch} from "@/app/(dashboard)/_components/empty-search";
+
 interface BoardListProps {
   orgId: string;
   query: {
@@ -17,9 +19,7 @@ export const BoardList = ({
 
   if (!data?.length && query.search) {
     return (
-      <div>
-        Try searching for something else
-      </div>
+      <EmptySearch />
     )
   }
 
