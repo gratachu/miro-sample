@@ -1,5 +1,9 @@
 "use client"
 
+import {EmptySearch} from "@/app/(dashboard)/_components/empty-search";
+import {EmptyFavorites} from "@/app/(dashboard)/_components/empty-favorite";
+import {EmptyBoards} from "@/app/(dashboard)/_components/empty-boards";
+
 interface BoardListProps {
   orgId: string;
   query: {
@@ -16,27 +20,15 @@ export const BoardList = ({
   const data = []
 
   if (!data?.length && query.search) {
-    return (
-      <div>
-        Try searching for something else
-      </div>
-    )
+    return <EmptySearch />
   }
 
   if (!data?.length && query.favorites) {
-    return (
-      <div>
-        No favorites
-      </div>
-    )
+    return <EmptyFavorites />
   }
 
   if (!data?.length) {
-    return (
-      <div>
-        No boards at all
-      </div>
-    )
+    return <EmptyBoards />
   }
 
   return (
