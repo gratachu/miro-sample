@@ -30,7 +30,7 @@ export const BoardCard = ({
         <div className="relative flex-1 bg-amber-50">
           <Image
             src={imageUrl}
-            alt="Doodle"
+            alt={title}
             fill
             className="object-fit"
           />
