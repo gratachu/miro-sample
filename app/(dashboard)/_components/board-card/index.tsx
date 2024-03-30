@@ -5,8 +5,9 @@ import {useAuth} from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import {formatDistanceToNow} from "date-fns";
-import {DialogFooter} from "@/components/ui/dialog";
 import {Footer} from "@/app/(dashboard)/_components/board-card/footer";
+
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface BoardCardProps {
   id: string;
@@ -56,5 +57,13 @@ export const BoardCard = ({
         />
       </div>
     </Link>
+  )
+}
+
+BoardCard.Skeleton = function BoardCardSkeleton() {
+  return (
+    <div className="aspect-[100/127] rounded-lg overflow-hidden">
+      <Skeleton className="h-full w-full"/>
+    </div>
   )
 }
