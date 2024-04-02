@@ -1,5 +1,5 @@
 import { v } from 'convex/values'
-import { query } from "@/convex/_generated/server";
+import {mutation, query} from "@/convex/_generated/server";
 
 export const get  = query({
   args: {
@@ -21,4 +21,19 @@ export const get  = query({
 
     return boards;
   }
-})
+});
+
+export const remove = mutation({
+  args: { id: v.id("boards") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity()
+
+    if (!identity) {
+      throw new Error('Unauthorized')
+    }
+
+    // TODO: Later check to delete favorite relation as well
+
+    await ctx.db.delete(args.id)
+  },
+});
