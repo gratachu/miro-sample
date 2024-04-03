@@ -6,7 +6,6 @@ import {EmptyBoards} from "@/app/(dashboard)/_components/empty-boards";
 import {useQuery} from "convex/react";
 import {api} from "@/convex/_generated/api";
 import {BoardCard} from "@/app/(dashboard)/_components/board-card";
-import {Component} from "react";
 import {NewBoardButton} from "@/app/(dashboard)/_components/new-board-button";
 
 interface BoardListProps {

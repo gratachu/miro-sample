@@ -1,5 +1,5 @@
 import { v } from 'convex/values'
-import { query } from "@/convex/_generated/server";
+import {mutation, query} from "@/convex/_generated/server";
 
 export const get  = query({
   args: {
@@ -21,4 +21,4 @@ export const get  = query({
 
     return boards;
   }
-})
+});
