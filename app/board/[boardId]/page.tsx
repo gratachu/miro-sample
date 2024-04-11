@@ -1,5 +1,10 @@
+import {Canvas} from "@/app/board/[boardId]/_components/canvas";
+import Info from "@/app/board/[boardId]/_components/info";
+
 const BoardIdPage = () => {
-  return <div>BoardIdPage</div>
+  return (
+    <Canvas />
+  )
 }
 
 export default BoardIdPage
