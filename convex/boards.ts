@@ -76,4 +76,4 @@ export const get  = query({
     const boardsWithFavorite = await Promise.all(boardsWithFavoriteRelation)
     return boardsWithFavorite
   }
-});
+})
