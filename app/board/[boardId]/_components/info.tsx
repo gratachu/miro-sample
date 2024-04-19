@@ -10,6 +10,7 @@ import {api} from "@/convex/_generated/api";
 import {Button} from "@/components/ui/button";
 import {Id} from "@/convex/_generated/dataModel";
 import {Hint} from "@/components/hint";
+import {useRenameModal} from "@/store/use-rename-modal";
 
 interface InfoProps {
   boardId: string
@@ -31,6 +32,8 @@ const TabSeparator = () => {
 export const Info = ({
   boardId,
 }: InfoProps) => {
+  const { onOpen } = useRenameModal()
+
   const data = useQuery(api.board.get, {
     id: boardId as Id<"boards">
   })
@@ -63,6 +66,7 @@ export const Info = ({
       <Button
         variant={"board"}
         className={"text-base font-normal px-2"}
+        onClick={() => onOpen(data?._id, data?.title)}
       >
         {data.title}
       </Button>
