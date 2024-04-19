@@ -20,6 +20,14 @@ const font = Poppins({
   weight: ["600"]
 });
 
+const TabSeparator = () => {
+  return (
+    <div className="text-neutral-300 px-1.5">
+
+    </div>
+  )
+}
+
 export const Info = ({
   boardId,
 }: InfoProps) => {
@@ -28,7 +36,6 @@ export const Info = ({
   })
 
   if (!data) return <InfoSkeleton />
-
 
   return (
     <div
@@ -52,6 +59,13 @@ export const Info = ({
           </Link>
         </Button>
       </Hint>
+      <TabSeparator />
+      <Button
+        variant={"board"}
+        className={"text-base font-normal px-2"}
+      >
+        {data.title}
+      </Button>
     </div>
   )
 }
