@@ -25,6 +25,21 @@ export const Participants = () => {
               />
             )
           })}
+
+        {currentUser && (
+          <UserAvatar
+            src={currentUser.info?.picture}
+            name={`${currentUser.info?.name} (You)`}
+            fallback={currentUser.info?.name?.[0]}
+          />
+        )}
+
+        {hasMoreUsers && (
+          <UserAvatar
+            name={`+${users.length - MAX_SHOWN_USERS}`}
+            fallback="+"
+          />
+        )}
       </div>
     </div>
   )
