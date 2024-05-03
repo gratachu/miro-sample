@@ -1,16 +1,36 @@
-import {Skeleton} from "@/components/ui/skeleton";
-import {ToolButton} from "@/app/board/[boardId]/_components/tool-button";
 import {Circle, MousePointer2, Pencil, Redo2, Square, StickyNote, Type, Undo2} from "lucide-react";
 
-export const Toolbar = () => {
+import {CanvasMode, CanvasState} from "@/types/canvas";
+
+import {ToolButton} from "@/app/board/[boardId]/_components/tool-button";
+
+interface ToolbarProps {
+  canvasState: CanvasState;
+  setCanvasState: (canvasState: CanvasState) => void;
+  undo: () => void;
+  redo: () => void;
+  canUndo: boolean;
+  canRedo: boolean;
+}
+
+export const Toolbar = ({
+  canvasState,
+  setCanvasState,
+  undo,
+  redo,
+  canUndo,
+  canRedo,
+}: ToolbarProps) => {
   return (
     <div className="absolute top-[50%] -translate-y-[50%] left-2 flex flex-col gap-y-4">
       <div className="bg-white rounded-md p-1.5 flex gap-y-1 flex-col items-center shadow-md">
         <ToolButton
           label="Select"
           icon={MousePointer2}
-          onClick={() => {}}
-          isActive={false}
+          onClick={() => setCanvasState({ mode: CanvasMode.None })}
+          isActive={
+            canvasState.mode === CanvasMode.None
+          }
         />
         <ToolButton
           label="Text"
@@ -47,14 +67,14 @@ export const Toolbar = () => {
         <ToolButton
           label="Undo"
           icon={Undo2}
-          onClick={() => {}}
-          isDisabled={false}
+          onClick={undo}
+          isDisabled={!canUndo}
         />
         <ToolButton
           label="Redo"
           icon={Redo2}
-          onClick={() => {}}
-          isDisabled={false}
+          onClick={redo}
+          isDisabled={!canRedo}
         />
       </div>
     </div>
