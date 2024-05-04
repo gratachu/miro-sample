@@ -9,6 +9,7 @@ import { Participants } from "@/app/board/[boardId]/_components/participants";
 import { Toolbar } from "@/app/board/[boardId]/_components/toolbar";
 
 import {useCanRedo, useCanUndo, useHistory, useSelf, useUndo} from "@/liveblocks.config";
+import {CursorsPresence} from "@/app/board/[boardId]/_components/cursors-presence";
 
 interface CanvasProps {
   boardId: string;
@@ -39,6 +40,13 @@ export const Canvas = ({
         canUndo={canUndo}
         canRedo={canRedo}
       />
+      <svg
+        className="h-[100vh] w-[100vw]"
+      >
+        <g>
+          <CursorsPresence />
+        </g>
+      </svg>
     </main>
   )
 }
