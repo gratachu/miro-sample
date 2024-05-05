@@ -18,6 +18,8 @@ export const Cursor = memo(({
 
   const name = info?.name || "Teammate"
 
+  console.log(info, cursor)
+
   if (!cursor) {
     return null
   }
@@ -25,7 +27,22 @@ export const Cursor = memo(({
   const { x, y } = cursor
 
   return (
-    <p></p>
+    <foreignObject
+      style={{
+        transform: `translateX(${x}px) translateY(${y}px)`,
+      }}
+      height={50}
+      width={50}
+      className="relative drop-shadow-md"
+    >
+      <MousePointer2
+        className="h-5 w-5"
+        style={{
+          fill: connectionIdToColor(connectionId),
+          color: connectionIdToColor(connectionId),
+        }}
+      />
+    </foreignObject>
   )
 })
 
