@@ -29,11 +29,6 @@ export const Canvas = ({
   const canRedo = useCanRedo()
 
   const onWheel = useCallback((e: React.WheelEvent) => {
-    console.log({
-      x: e.deltaX,
-      y: e.deltaY,
-    })
-
     setCamera((camera) => ({
       x: camera.x - e.deltaX,
       y: camera.y - e.deltaY,
@@ -45,8 +40,13 @@ export const Canvas = ({
 
     const current = pointerEventToCanvasPoint(e, camera)
 
-    console.log({ current })
     setMyPresence({cursor: current})
+  }, [])
+
+  const onPointerLeave = useMutation(({
+    setMyPresence
+  }) => {
+    setMyPresence({cursor: null})
   }, [])
 
   return (
@@ -67,6 +67,7 @@ export const Canvas = ({
         className="h-[100vh] w-[100vw]"
         onWheel={onWheel}
         onPointerMove={onPointerMove}
+        onPointerLeave={onPointerLeave}
       >
         <g>
           <CursorsPresence />
