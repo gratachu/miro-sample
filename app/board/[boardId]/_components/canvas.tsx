@@ -12,6 +12,8 @@ import {useCanRedo, useCanUndo, useHistory, useMutation } from "@/liveblocks.con
 import {CursorsPresence} from "@/app/board/[boardId]/_components/cursors-presence";
 import {pointerEventToCanvasPoint} from "@/lib/utils";
 
+const MAX_LAYER = 100
+
 interface CanvasProps {
   boardId: string;
 }
@@ -69,7 +71,11 @@ export const Canvas = ({
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
       >
-        <g>
+        <g
+          style={{
+            transform: `translate(${camera.x}px, ${camera.y}px)`
+          }}
+        >
           <CursorsPresence />
         </g>
       </svg>
