@@ -13,6 +13,7 @@ import {CursorsPresence} from "@/app/board/[boardId]/_components/cursors-presenc
 import {pointerEventToCanvasPoint} from "@/lib/utils";
 import {nanoid} from "nanoid";
 import {LiveObject} from "@liveblocks/client";
+import {LayerPreview} from "@/app/board/[boardId]/_components/layer-preview";
 
 const MAX_LAYER = 100
 
@@ -94,6 +95,11 @@ export const Canvas = ({
   ) => {
     const point = pointerEventToCanvasPoint(e, camera)
 
+    console.log({
+      point,
+      mode: canvasState.mode,
+    })
+
     if (canvasState.mode === CanvasMode.Inserting) {
       insertLayer(canvasState.layerType, point)
     } else {
@@ -127,12 +133,21 @@ export const Canvas = ({
         onWheel={onWheel}
         onPointerMove={onPointerMove}
         onPointerLeave={onPointerLeave}
+        onPointerUp={onPointerUp}
       >
         <g
           style={{
             transform: `translate(${camera.x}px, ${camera.y}px)`
           }}
         >
+          {layerIds.map((layerId) => (
+            <LayerPreview
+              key={layerId}
+              id={layerId}
+              onLayerPointerDown={() => {}}
+              selectionColor={"#000"}
+            />
+          ))}
           <CursorsPresence />
         </g>
       </svg>
